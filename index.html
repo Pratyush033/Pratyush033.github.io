@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
 <title>Pratyush Raj Tomar | Financial crime analyst and software developer</title>
 <meta name="description" content="Financial crime analyst at Revolut and full-stack developer. I investigate how money moves, and build the software and AI that make it faster to follow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,9 +13,9 @@
 :root{--ink:#F2F4F9;--soft:#AEB7CC;--mut:#7C859A;--rule:rgba(255,255,255,.14);--lb:#9DB0FF;--blue:#3050FF;--blue2:#7A4DFF;--pad:clamp(20px,5vw,96px);--p:0;
 --serif:"Instrument Serif","Times New Roman",Georgia,serif;--sans:"Inter Tight","Helvetica Neue",Arial,sans-serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
-html{scroll-padding-top:70px;scroll-behavior:smooth;background:radial-gradient(60% 50% at 70% 10%,#02040f 0,#000 70%),#000}
+html{scroll-padding-top:70px;scroll-behavior:smooth;background:radial-gradient(60% 50% at 70% 10%,#02040f 0,#000 70%),#000;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:transparent;color:var(--ink);font:400 19px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:transparent;color:var(--ink);font:400 19px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
 a{color:inherit;text-decoration:none}:focus-visible{outline:2px solid var(--lb);outline-offset:4px}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
 .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
@@ -36,6 +37,13 @@ em{font-style:italic}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;border:1px solid var(--rule);font:500 15px/1 var(--sans);color:var(--ink);background:none;cursor:pointer;white-space:nowrap;transition:background .3s,color .3s,border-color .3s,box-shadow .3s}
 .pill:hover{border-color:var(--ink)}.pill.f{background:var(--ink);color:#000;border-color:var(--ink)}.pill.f:hover{background:#fff;box-shadow:0 0 44px rgba(48,80,255,.7)}
 .top .pill{padding:11px 20px;font-size:14px}
+/* mobile menu button and overlay (only shown on small screens) */
+.mb{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);background:rgba(255,255,255,.05);cursor:pointer;padding:0;position:relative;flex:none}
+.mb span{position:absolute;left:14px;right:14px;height:1.5px;background:var(--ink);transition:transform .35s,top .35s}
+.mb span:nth-child(1){top:17.5px}.mb span:nth-child(2){top:24.5px}
+.menu-open .mb span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .mb span:nth-child(2){top:21px;transform:rotate(-45deg)}
+.menu{display:none}
 /* shared */
 .lab{display:flex;justify-content:space-between;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--rule);margin-bottom:clamp(36px,5vw,72px);font:500 12.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
 .sec{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:112px var(--pad) 72px}
@@ -47,6 +55,7 @@ h2.h{margin:0 0 clamp(36px,5vw,72px);max-width:15em;font:400 clamp(2.5rem,5.4vw,
 .hero-in{flex:1;width:100%;max-width:1680px;margin:0 auto;padding:110px var(--pad) clamp(90px,17vh,200px);display:flex;flex-direction:column;justify-content:flex-end}
 .hero .lab{margin-bottom:auto;animation:fade 1.2s 2s both}
 .hero h1{margin:clamp(40px,6vw,90px) 0 clamp(26px,3.6vw,52px);font:400 clamp(2.6rem,12vw,16rem)/1 var(--serif);letter-spacing:-.03em;white-space:nowrap}
+.mbr{display:none}
 .ln{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
 .ln>span{display:inline-block;white-space:nowrap;transform:translateY(110%);animation:up 1.4s cubic-bezier(.2,.8,.2,1) calc(1.5s + var(--d,0s)) forwards}
 @keyframes up{to{transform:none}}
@@ -163,6 +172,7 @@ h2.h{margin:0 0 clamp(36px,5vw,72px);max-width:15em;font:400 clamp(2.5rem,5.4vw,
 /* contact */
 .fin{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:112px var(--pad) 72px}
 .giant{margin:0 0 clamp(30px,4vw,56px);white-space:nowrap;font:400 clamp(3.4rem,12.5vw,14rem)/.94 var(--serif);letter-spacing:-.03em}
+#gs{display:inline-block;white-space:nowrap}
 .mail{display:inline-block;font:400 clamp(1.3rem,3.2vw,2.8rem)/1.2 var(--serif);letter-spacing:-.015em;word-break:break-all;background:linear-gradient(90deg,#5A73FF,#9A6BFF) 0 100%/0 1px no-repeat;padding-bottom:.08em;transition:background-size .6s cubic-bezier(.2,.8,.2,1),transform .3s}
 .mail:hover{background-size:100% 1px}
 .links{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:clamp(36px,5vw,64px)}
@@ -181,14 +191,79 @@ footer a:hover{color:var(--ink)}
 .cl{display:inline-block;margin-top:20px;font:500 12.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--lb);border-bottom:1px solid currentColor;padding-bottom:5px;transition:color .25s}.cl:hover{color:#fff}
 .sr p.nm{font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.1}
 .pj+.pj{border-top:0}
+
+/* ===== TABLET AND PHONE ===== */
 @media (max-width:900px){
+body{font-size:17px;line-height:1.6}
+/* lighter visuals so phones stay smooth */
+.grain,.cur{display:none}
+.orb{filter:blur(55px);animation:none}
+.js [data-r]:not(.in){filter:none;transform:translateY(24px)}
+/* header: brand, pill, menu button */
+.top{gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) var(--pad) 16px}
 .top nav{display:none}
-.sec,.fin{min-height:0;padding:96px var(--pad) 40px}
-.hero-in{padding:96px var(--pad) 48px}.hrow{flex-direction:column;align-items:flex-start;gap:24px}
+.br{margin-right:auto;font-size:21px}
+.mb{display:block}
+body.menu-open{overflow:hidden}
+.menu{display:flex;position:fixed;inset:0;z-index:49;flex-direction:column;justify-content:center;padding:96px var(--pad) 40px;background:rgba(0,0,0,.95);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.menu a{display:block;padding:14px 0;border-top:1px solid var(--rule);font:400 clamp(2rem,9vw,3rem)/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.menu a:last-child{border-bottom:1px solid var(--rule)}
+.menu-open .menu{opacity:1;visibility:visible}
+/* layout */
+.sec,.fin{min-height:0;padding:92px var(--pad) 40px}
+.lab{margin-bottom:28px}
+h2.h{font-size:clamp(2.1rem,9vw,3rem);margin-bottom:32px}
+.hero-in{padding:96px var(--pad) 40px}
+.mbr{display:inline}
+.eb{flex-wrap:wrap;row-gap:6px;column-gap:10px;font-size:11.5px;letter-spacing:.07em;line-height:1.3}
+.hrow{flex-direction:column;align-items:flex-start;gap:22px;padding-top:22px}
+.cta{width:100%;flex-wrap:wrap}.cta .pill{flex:1 1 140px;justify-content:center}
+.tk p{font-size:1.15rem}
+.mq{padding:16px 0}.mq-t{gap:22px;font-size:clamp(2rem,9vw,3rem)}
+.bp{font-size:clamp(1.7rem,7.2vw,2.4rem)}
+.figs .fn{font-size:clamp(3.6rem,18vw,5rem)}
 .xp,.edu2,.pj{grid-template-columns:1fr}.xp>div:first-child{display:none}
-.ed,.ed+.ed{padding:32px 0;border-left:0;border-top:1px solid var(--rule)}.ed:first-child{border-top:0}
+.rm{flex-wrap:wrap;row-gap:10px}
+.role{padding:36px 0}
+.role h3{font-size:clamp(2rem,8vw,2.6rem)}
+.role li{padding:13px 0}
+.edu2 .ed,.edu2 .ed+.ed,.edu2 .ed:last-child{padding:32px 0;border-left:0;border-top:1px solid var(--rule)}
+.edu2 .ed:first-child{border-top:0;padding-top:24px}
+.edu2 .bn{font-size:clamp(3.6rem,18vw,5rem)}
+.mods{font-size:15.5px;line-height:1.8}
+.pj{gap:24px;padding:32px 0}
+.pj h3{font-size:clamp(2.4rem,11vw,3.4rem)}
+.pj .tg{font-size:14.5px;margin-bottom:22px}
+.st{padding:18px 8px 0 0}
+.st span{font-size:1.05rem}
+.st small{font-size:10px}
+.sr{padding:22px 0 26px}
+.sr p{font-size:clamp(1.15rem,5vw,1.4rem)}
+.sr p.nm{font-size:clamp(1.4rem,6vw,1.9rem)}
+.cl{padding:10px 0 5px;margin-top:10px}
 .figs{grid-template-columns:1fr}.figs>div,.figs>div+div{border-left:0;padding:24px 0;border-top:1px solid var(--rule)}.figs>div:first-child{border-top:0}
-footer{flex-direction:column;gap:6px}.giant{white-space:normal}.links .pill{padding:18px 30px}}
+.giant{white-space:normal;font-size:clamp(2.6rem,11vw,4.5rem);line-height:1}
+#gs{display:inline;white-space:normal}
+footer{flex-direction:column;gap:6px}
+.links .pill{padding:18px 30px}
+}
+/* small phones: pill moves into the menu, buttons go full width */
+@media (max-width:560px){
+.top .pill{display:none}
+.links{flex-direction:column;align-items:stretch;gap:12px}
+.links .pill{justify-content:center}
+.cta .pill{flex:1 1 100%}
+}
+/* touch screens: no sticky hover effects */
+@media (hover:none){
+.sr p:hover span{opacity:1}.sr p span:hover{color:inherit}
+.role li:hover{padding-left:0;color:var(--soft)}
+.links .pill:hover{transform:none;box-shadow:none}
+.pill.f:hover,.hero .pill.f:hover{background:var(--ink);box-shadow:none}
+.pill:hover{border-color:var(--rule)}.pill.f:hover{border-color:var(--ink)}
+.ed:hover::before{transform:scaleX(0)}
+.mail:hover{background-size:0 1px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ld{display:none}.ln>span{transform:none}.js [data-r]:not(.in){opacity:1;transform:none;filter:none}.bp .w{opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -198,14 +273,16 @@ footer{flex-direction:column;gap:6px}.giant{white-space:normal}.links .pill{padd
 
 <header class="top"><a class="br" href="#top">Pratyush Raj Tomar</a>
 <nav aria-label="Primary"><a href="#about">About</a><a href="#work">Experience</a><a href="#education">Education</a><a href="#certifications">Certifications</a><a href="#projects">Projects</a><a href="#skills">Skills</a></nav>
-<a class="pill f" href="#contact">Say hello</a></header>
+<a class="pill f" href="#contact">Say hello</a>
+<button class="mb" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button></header>
+<nav class="menu" id="menu" aria-label="Mobile"><a href="#about">About</a><a href="#work">Experience</a><a href="#education">Education</a><a href="#certifications">Certifications</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
 
 <section class="hero" id="top"><div class="hv" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i>
 
 </div>
 <div class="hero-in">
 <span class="eb"><i></i>Financial crime analyst <b>+</b> Software developer</span>
-<h1 id="nm"><span class="ln"><span style="--d:.1s">Pratyush <em class="gr">Raj Tomar</em></span></span></h1>
+<h1 id="nm"><span class="ln"><span style="--d:.1s">Pratyush <br class="mbr"><em class="gr">Raj Tomar</em></span></span></h1>
 <div class="tracks"><div class="tk"><small>Financial crime</small><p>Transaction monitoring<i>/</i>KYC and CDD<i>/</i>SAR narratives<i>/</i>Case management</p></div><div class="tk"><small>Software and AI</small><p>Python<i>/</i>React<i>/</i>Node.js<i>/</i>MongoDB<i>/</i>Machine learning<i>/</i>NLP</p></div></div>
 <div class="hrow"><p class="sub"><b>Financial crime analyst at Revolut, and a full-stack developer.</b> I investigate how money moves, then build the software and AI that make it faster to follow.</p>
 <div class="cta"><a class="pill f" href="#work">See my work</a><a class="pill" href="#contact">Get in touch</a></div></div>
@@ -281,7 +358,7 @@ footer{flex-direction:column;gap:6px}.giant{white-space:normal}.links .pill{padd
 
 <section class="fin wrap" id="contact">
 <div class="lab"><span>Contact</span></div>
-<h2 class="giant" data-r><span id="gs" style="display:inline-block;white-space:nowrap">Let’s talk fincrime <em class="gr">and software.</em></span></h2>
+<h2 class="giant" data-r><span id="gs">Let’s talk fincrime <em class="gr">and software.</em></span></h2>
 <div class="links" data-r><a class="pill f" href="mailto:pratyushrajtomar3@gmail.com" style="--i:0">Email <span class="ar">↗</span></a><a class="pill" href="tel:+918210023676" style="--i:1">+91 82100 23676 <span class="ar">↗</span></a><a class="pill" href="https://www.linkedin.com/in/pratyush-raj-tomar/" target="_blank" rel="noopener" style="--i:2">LinkedIn <span class="ar">↗</span></a><a class="pill" href="https://github.com/Pratyush033" target="_blank" rel="noopener" style="--i:3">GitHub <span class="ar">↗</span></a><button class="pill" id="copy" style="--i:4">Copy email</button></div>
 </section>
 <footer><span>© 2026 Pratyush Raj Tomar</span><a href="#top">Back to top ↑</a></footer>
@@ -290,17 +367,20 @@ footer{flex-direction:column;gap:6px}.giant{white-space:normal}.links .pill{padd
 document.documentElement.classList.add('js');
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover)').matches,root=document.documentElement,M={x:.5,y:.5,tx:.5,ty:.5};
 (function(){var n=document.getElementById('ldn'),t0=performance.now();(function f(){var k=Math.min((performance.now()-t0)/1500,1);n.textContent=Math.round(k*100);if(k<1)requestAnimationFrame(f)})()})();
-/* WebGL background */
+/* WebGL background (lower resolution and 30fps on phones, high precision where available) */
 (function(){var c=document.getElementById('bg'),gl=c.getContext('webgl',{antialias:false,powerPreference:'low-power'});if(!gl){c.style.display='none';return}
 var vs='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}',
-fs='precision mediump float;uniform vec2 r,m;uniform float t;float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return s;}void main(){vec2 u=gl_FragCoord.xy/r,p=(gl_FragCoord.xy-.5*r)/r.y;vec2 q=vec2(fbm(p*1.5+t*.09),fbm(p*1.5+vec2(5.2,1.3)-t*.07));float f=fbm(p*1.3+2.4*q+t*.06);vec3 c=vec3(.001,.002,.009);c+=vec3(.01,.025,.15)*smoothstep(.3,.85,f)*.6;c+=vec3(.05,.015,.14)*pow(smoothstep(.55,1.,f),2.)*.5;float L=abs(fract(f*10.)-.5);c+=vec3(.12,.24,.9)*(1.-smoothstep(0.,.04,L))*smoothstep(.36,.8,f)*.14;vec2 k=vec2(r.x/r.y,1.);float d=length((u-m)*k);c+=vec3(.08,.14,.65)*.04/(d*d+.03);c*=1.-.6*length(u-.5);gl_FragColor=vec4(c,1.);}';
+fs='#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\nuniform vec2 r,m;uniform float t;float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return s;}void main(){vec2 u=gl_FragCoord.xy/r,p=(gl_FragCoord.xy-.5*r)/r.y;vec2 q=vec2(fbm(p*1.5+t*.09),fbm(p*1.5+vec2(5.2,1.3)-t*.07));float f=fbm(p*1.3+2.4*q+t*.06);vec3 c=vec3(.001,.002,.009);c+=vec3(.01,.025,.15)*smoothstep(.3,.85,f)*.6;c+=vec3(.05,.015,.14)*pow(smoothstep(.55,1.,f),2.)*.5;float L=abs(fract(f*10.)-.5);c+=vec3(.12,.24,.9)*(1.-smoothstep(0.,.04,L))*smoothstep(.36,.8,f)*.14;vec2 k=vec2(r.x/r.y,1.);float d=length((u-m)*k);c+=vec3(.08,.14,.65)*.04/(d*d+.03);c*=1.-.6*length(u-.5);gl_FragColor=vec4(c,1.);}';
 function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
 var p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,vs));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS)){c.style.display='none';return}
 gl.useProgram(p);gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);var l=gl.getAttribLocation(p,'a');gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
 var ur=gl.getUniformLocation(p,'r'),ut=gl.getUniformLocation(p,'t'),um=gl.getUniformLocation(p,'m');
-function size(){c.width=Math.round(innerWidth*.5);c.height=Math.round(innerHeight*.5);gl.viewport(0,0,c.width,c.height);gl.uniform2f(ur,c.width,c.height)}
-function draw(){M.x+=(M.tx-M.x)*.06;M.y+=(M.ty-M.y)*.06;gl.uniform1f(ut,performance.now()/1000+scrollY*.0012);gl.uniform2f(um,M.x,M.y);gl.drawArrays(gl.TRIANGLES,0,3);if(!rm)requestAnimationFrame(draw)}
-size();addEventListener('resize',function(){size();if(rm)draw()});draw()})();
+var small=innerWidth<700,scl=small?.35:.5,lw=innerWidth,lh=innerHeight,last=0;
+function size(){c.width=Math.round(innerWidth*scl);c.height=Math.round(innerHeight*scl);gl.viewport(0,0,c.width,c.height);gl.uniform2f(ur,c.width,c.height)}
+function draw(now){if(!rm)requestAnimationFrame(draw);if(small&&now&&now-last<32)return;last=now||0;M.x+=(M.tx-M.x)*.06;M.y+=(M.ty-M.y)*.06;gl.uniform1f(ut,performance.now()/1000+scrollY*.0012);gl.uniform2f(um,M.x,M.y);gl.drawArrays(gl.TRIANGLES,0,3)}
+size();
+/* ignore the small height changes caused by the phone address bar showing and hiding */
+addEventListener('resize',function(){if(innerWidth===lw&&Math.abs(innerHeight-lh)<160)return;lw=innerWidth;lh=innerHeight;size();if(rm)draw()});draw()})();
 
 var cur=document.querySelector('.cur');
 addEventListener('mousemove',function(e){M.tx=e.clientX/innerWidth;M.ty=1-e.clientY/innerHeight;if(fine){cur.style.opacity=1;cur.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)'}});
@@ -308,10 +388,16 @@ addEventListener('mousemove',function(e){M.tx=e.clientX/innerWidth;M.ty=1-e.clie
 /* hero parallax */
 (function(){var h=document.querySelector('.hv');if(!h||rm||!fine)return;addEventListener('mousemove',function(e){h.style.setProperty('--mx',(e.clientX/innerWidth-.5).toFixed(3));h.style.setProperty('--my',(e.clientY/innerHeight-.5).toFixed(3))})})();
 
-/* the full name always fits on one line */
+/* the name fills the width (one line on desktop, two lines on phones) */
 (function(){var h=document.getElementById('nm'),s=h.querySelector('.ln>span');function fit(){h.style.fontSize='100px';var w=s.getBoundingClientRect().width,W=h.getBoundingClientRect().width;if(w>0&&W>0)h.style.fontSize=(100*W/w*.98)+'px'}fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventListener('resize',fit);addEventListener('load',fit);setTimeout(fit,600);setTimeout(fit,2200)})();
-/* contact heading fills one line */
+/* contact heading fills one line on desktop, wraps naturally on phones */
 (function(){var g=document.querySelector('.giant'),s=document.getElementById('gs');function fit(){if(innerWidth<=900){g.style.fontSize='';return}g.style.fontSize='100px';var w=s.getBoundingClientRect().width,W=g.getBoundingClientRect().width;if(w>0&&W>0)g.style.fontSize=(100*W/w*.98)+'px'}fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventListener('resize',fit);addEventListener('load',fit);setTimeout(fit,600)})();
+/* mobile menu */
+(function(){var mb=document.querySelector('.mb'),mn=document.getElementById('menu'),b=document.body;function tm(o){b.classList.toggle('menu-open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')}
+mb.addEventListener('click',function(){tm(!b.classList.contains('menu-open'))});
+mn.addEventListener('click',function(e){if(e.target.tagName==='A')tm(false)});
+addEventListener('keydown',function(e){if(e.key==='Escape')tm(false)});
+addEventListener('resize',function(){if(innerWidth>900)tm(false)})})();
 /* about: word scrub + live counters */
 var lede=document.getElementById('lede');lede.innerHTML=lede.textContent.split(' ').map(function(w){return '<span class="w">'+w+'</span>'}).join(' ');var words=lede.querySelectorAll('.w');
 document.getElementById('days').dataset.n=Math.max(0,Math.floor((Date.now()-new Date('2026-07-06T00:00:00'))/864e5)+1);
